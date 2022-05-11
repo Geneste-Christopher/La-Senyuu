@@ -1,0 +1,42 @@
+AddDefaultCharset "utf-8"
+
+# On interdit l'acces au fichier .htacces 
+<Files .htaccess>
+    order allow,deny
+    deny from allow
+</Files>
+
+# Tous les fichier contenant ...
+<FilesMatch "\.(html|php|js|css|txt)$">
+    AddDefaultCharset UTF-8
+    DefaultLanguage fr-fr
+</FilesMatch>
+
+
+
+# --------------------
+# Réecriture d'url 
+# --------------------
+
+# Interdire d'indexé les fichiers 
+Options All -Indexes
+
+
+# Activation du moteur de réecriture 
+RewriteEngine On 
+
+# Règle de réecriture 
+# En prod il suffi de mettre /view/[FileName]
+# Front office
+RewriteRule ^$ /Sites/Senyuu/Senyuu_Local/view/wait.php
+RewriteRule ^Accueil$ /Sites/Senyuu/Senyuu_Local/view/index.php
+RewriteRule ^Nos_membres$ /Sites/Senyuu/Senyuu_Local/view/membres.php
+RewriteRule ^Notre_Galerie$ /Sites/Senyuu/Senyuu_Local/view/galerie.php
+RewriteRule ^Nous_contacter$ /Sites/Senyuu/Senyuu_Local/view/contact.php
+RewriteRule ^Connexion$ /Sites/Senyuu/Senyuu_Local/view/connexion.php
+RewriteRule ^reset/mot-de-passe$ /Sites/Senyuu/Senyuu_Local/view/reset.php
+RewriteRule ^Deconnexion$ /Sites/Senyuu/Senyuu_Local/Controller/deconnexion.php
+
+# Back office 
+RewriteRule ^back_office/Ajouter_membre$ /Sites/Senyuu/Senyuu_Local/view_back/index.php
+RewriteRule ^back_office/Gestion_membre$ /Sites/Senyuu/Senyuu_Local/view_back/membre.php
